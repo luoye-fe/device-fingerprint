@@ -11,7 +11,7 @@ module.exports = {
 	extends: 'standard',
 	// add your custom rules here
 	rules: {
-		indent: [2, 'tab'],
+		indent: [2, 4],
 		semi: 0,
 		'space-before-function-paren': 0,
 		'no-tabs': 0,
