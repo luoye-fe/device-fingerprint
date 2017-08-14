@@ -13,8 +13,10 @@ function getAudioFP() {
     return new Promise((resolve, reject) => {
         if (!isAudio()) return resolve('');
         const audioCtx = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(1, 44100, 44100);
+
         const audioOscillator = audioCtx.createOscillator();
-        const audioGain = audioCtx.createGain();
+        audioOscillator.type = 'triangle'; // 周期波形
+        audioOscillator.frequency.value = 1e4;
 
         // 动态压缩分析
         const audioCompressor = audioCtx.createDynamicsCompressor();
@@ -25,23 +27,22 @@ function getAudioFP() {
         audioCompressor.attack && (audioCompressor.attack.value = 0);
         audioCompressor.release && (audioCompressor.release.value = 0.25);
 
-        // 设置某些参数
-        audioGain.gain.value = 0; // 声音大小
-        audioOscillator.type = 'triangle'; // 周期波形
+        // 连接节点
         audioOscillator.connect(audioCompressor); // 进行动态压缩
         audioCompressor.connect(audioCtx.destination); // 输出
 
-        audioCtx.oncomplete = function(evnt) {
+        audioOscillator.start(0);
+        audioCtx.startRendering();
+
+        // ios 音频无法自动播放，不会触发 complete
+        audioCtx.oncomplete = function(event) {
             const shaHash = sha256.create();
-            for (let i = 0; i < evnt.renderedBuffer.length; i++) {
-                shaHash.update(evnt.renderedBuffer.getChannelData(0)[i].toString());
+            for (let i = 0; i < event.renderedBuffer.length; i++) {
+                shaHash.update(event.renderedBuffer.getChannelData(0)[i].toString());
             }
             audioCompressor.disconnect();
             resolve(shaHash.hex());
         }
-
-        audioOscillator.start(0);
-        audioCtx.startRendering();
     });
 }
 
