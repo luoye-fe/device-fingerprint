@@ -32,7 +32,6 @@
     "uglify-js": "^2.7.3"
   },
   "dependencies": {
-    "blueimp-md5": "^2.8.0",
     "ua-parser-js": "^0.7.14"
   }
 }
