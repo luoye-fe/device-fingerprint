@@ -1,7 +1,7 @@
 /*
  Canvas
  */
-import md5 from 'blueimp-md5';
+import sha256 from '../lib/sha256.js';
 
 const key = 'Canvas';
 
@@ -56,7 +56,7 @@ function getCanvasFP() {
         context.fillStyle = '#fff';
         context.fillText('For Device Fingerprint.', 0, 184);
 
-        resolve(md5(canvas.toDataURL()));
+        resolve(sha256(canvas.toDataURL()));
     })
 }
 

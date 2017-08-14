@@ -8,6 +8,6 @@ function getUserAgent() {
 }
 
 export default {
-	key,
-	getUserAgent
+    key,
+    getUserAgent
 };

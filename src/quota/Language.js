@@ -14,5 +14,5 @@ function getLanguage() {
 export default {
     key,
     isLanguage,
-    getLanguage,
+    getLanguage
 };

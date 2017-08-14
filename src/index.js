@@ -1,3 +1,4 @@
+import Audio from './quota/Audio.js';
 import Browser from './quota/Browser.js';
 import Canvas from './quota/Canvas.js';
 import Fonts from './quota/Fonts.js';
@@ -11,6 +12,7 @@ import UserAgent from './quota/UserAgent.js';
 import { mixin } from './utils.js';
 
 const quatosMap = [
+    Audio,
     Browser,
     Canvas,
     Fonts,
@@ -22,7 +24,7 @@ const quatosMap = [
     UserAgent
 ];
 
-// mixin all func and delete key
+// mixin all func and delete useless key
 let allFuncResult = {};
 quatosMap.forEach(item => {
     mixin(item, allFuncResult);
