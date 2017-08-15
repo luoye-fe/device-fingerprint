@@ -1,7 +1,29 @@
 /*
  Audio
  */
+import UAParser from 'ua-parser-js';
 import sha256 from '../lib/sha256.js';
+
+const parser = new UAParser();
+const result = parser.getResult();
+
+let audioFP = '';
+let fakeClick = false;
+
+// hack iOS 不能自动播放
+if (result.os.name === 'iOS') {
+    // iOS 下，监听事件不用考虑兼容了
+    var eventFunction = function () {
+        fakeClick = true;
+        getAudioFP()
+            .then(fp => {
+                audioFP = fp;
+            });
+        // remove event
+        window.removeEventListener('touchstart', eventFunction, false);
+    };
+    window.addEventListener('touchstart', eventFunction, false);
+}
 
 const key = 'Audio';
 
@@ -12,6 +34,12 @@ function isAudio() {
 function getAudioFP() {
     return new Promise((resolve, reject) => {
         if (!isAudio()) return resolve('');
+
+        // iOS 非交互事件 返回空
+        if (result.os.name === 'iOS' && !fakeClick) return resolve('');
+        // iOS 交互事件 返回获取的值
+        if (result.os.name === 'iOS' && fakeClick && audioFP !== '') return resolve(audioFP);
+
         const audioCtx = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(1, 44100, 44100);
 
         const audioOscillator = audioCtx.createOscillator();
