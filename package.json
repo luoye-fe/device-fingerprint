@@ -1,11 +1,11 @@
 {
   "name": "device-fingerprint",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "设备指纹",
   "author": "luoye <luoyefe@gmail.com>",
   "main": "dist/device-fingerprint.min.js",
   "scripts": {
-    "dev": "./node_modules/.bin/rollup -w -m -c build/config.js --env=dev",
+    "dev": "rollup -w -m -c build/config.js --env=dev",
     "build": "node build/build.js",
     "new": "node build/new.js"
   },
@@ -33,5 +33,20 @@
   },
   "dependencies": {
     "ua-parser-js": "^0.7.14"
-  }
+  },
+  "directories": {
+    "example": "example"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luoye-fe/device-fingerprint.git"
+  },
+  "keywords": [
+    "设备指纹"
+  ],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luoye-fe/device-fingerprint/issues"
+  },
+  "homepage": "https://github.com/luoye-fe/device-fingerprint#readme"
 }
