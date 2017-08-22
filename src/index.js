@@ -1,6 +1,7 @@
 import Audio from './quota/Audio.js';
 import Browser from './quota/Browser.js';
 import Canvas from './quota/Canvas.js';
+import Device from './quota/Device.js';
 import Fonts from './quota/Fonts.js';
 import Language from './quota/Language.js';
 import MimeTypes from './quota/MimeTypes.js';
@@ -15,6 +16,7 @@ const quatosMap = [
     Audio,
     Browser,
     Canvas,
+    Device,
     Fonts,
     Language,
     MimeTypes,

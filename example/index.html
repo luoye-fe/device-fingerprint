@@ -21,10 +21,10 @@
 	<script type="text/javascript">
 		console.log(DeviceFingerprint)
         document.querySelector('.mute').addEventListener('click', function() {
-            DeviceFingerprint.getAudioFP()
+            DeviceFingerprint.getDevices()
                 .then(fp => {
                     console.log(fp)
-                    document.querySelector('.mute').innerHTML = fp;
+                    // document.querySelector('.mute').innerHTML = fp;
                 })
         })
 		// DeviceFingerprint.quota.Language.get().then(info => {
