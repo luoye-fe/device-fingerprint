@@ -13,7 +13,7 @@ function getDevices() {
                 const reulst = [];
                 const current = [];
                 devices.forEach(item => {
-                    if (current.indexOf(item.deviceId) === -1) {
+                    if (current.indexOf(item.deviceId) === -1 || item.deviceId !== 'default') {
                         current.push(item.deviceId);
                         reulst.push({
                             deviceId: item.deviceId,
