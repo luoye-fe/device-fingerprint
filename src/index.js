@@ -9,6 +9,7 @@ import Plugins from './quota/Plugins.js';
 import Screen from './quota/Screen.js';
 import TimeZone from './quota/TimeZone.js';
 import UserAgent from './quota/UserAgent.js';
+import WebGL from './quota/WebGL.js';
 
 import { mixin } from './utils.js';
 
@@ -23,7 +24,8 @@ const quatosMap = [
     Plugins,
     Screen,
     TimeZone,
-    UserAgent
+    UserAgent,
+    WebGL
 ];
 
 // mixin all func and delete useless key
