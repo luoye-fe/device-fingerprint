@@ -1,3 +1,9 @@
+import Promise from 'promise-polyfill';
+
+if (!window.Promise) {
+    window.Promise = Promise;
+}
+
 import Audio from './quota/Audio.js';
 import Browser from './quota/Browser.js';
 import Canvas from './quota/Canvas.js';

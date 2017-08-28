@@ -32,6 +32,7 @@
     "uglify-js": "^2.7.3"
   },
   "dependencies": {
+    "promise-polyfill": "^6.0.2",
     "ua-parser-js": "^0.7.14"
   },
   "directories": {
